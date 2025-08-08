@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Cost - Catat Pengeluaran Harian</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(90deg, #ff7e5f, #feb47b);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #6a11cb;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+        }
+
+        button {
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .expenses-list {
+            margin-top: 40px;
+        }
+
+        .expenses-list h2 {
+            color: #6a11cb;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .expense-item {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .expense-details {
+            flex-grow: 1;
+        }
+
+        .expense-amount {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #ff7e5f;
+        }
+
+        .expense-category {
+            background-color: #e0e7ff;
+            color: #4f46e5;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .expense-date {
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        .total-section {
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .total-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .status {
+            padding: 15px;
+            text-align: center;
+            margin: 20px 0;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .status.success {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .status.error {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .expense-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .expense-amount {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💰 Control Cost</h1>
+            <p class="subtitle">Catat dan kelola pengeluaran harian Anda dengan mudah</p>
+        </header>
+        
+        <div class="content">
+            <div id="status" class="status" style="display: none;"></div>
+            
+            <form id="expenseForm">
+                <div class="form-group">
+                    <label for="description">Deskripsi Pengeluaran</label>
+                    <input type="text" id="description" placeholder="Contoh: Makan siang di restoran" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="amount">Jumlah (Rp)</label>
+                    <input type="number" id="amount" placeholder="Contoh: 50000" min="1" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Kategori</label>
+                    <select id="category" required>
+                        <option value="">Pilih Kategori</option>
+                        <option value="Makanan">Makanan</option>
+                        <option value="Transportasi">Transportasi</option>
+                        <option value="Belanja">Belanja</option>
+                        <option value="Hiburan">Hiburan</option>
+                        <option value="Kesehatan">Kesehatan</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Tanggal</label>
+                    <input type="date" id="date" required>
+                </div>
+                
+                <button type="submit">➕ Tambah Pengeluaran</button>
+            </form>
+            
+            <div class="total-section">
+                <p>Total Pengeluaran Hari Ini</p>
+                <div class="total-amount">Rp <span id="totalAmount">0</span></div>
+            </div>
+            
+            <div class="expenses-list">
+                <h2>🧾 Riwayat Pengeluaran</h2>
+                <div id="expensesContainer">
+                    <!-- Expenses will be added here by JavaScript -->
+                    <p style="text-align: center; color: #777; padding: 20px;">Belum ada pengeluaran yang dicatat.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+        import { getFirestore, collection, addDoc, getDocs, query, where, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBbZPb47j7iajsk31mieUVq8VnCd7TXppc",
+            authDomain: "control-cost-31f1d.firebaseapp.com",
+            projectId: "control-cost-31f1d",
+            storageBucket: "control-cost-31f1d.firebasestorage.app",
+            messagingSenderId: "876416289716",
+            appId: "1:876416289716:web:ad20cfd8f14a9b91b6c0e1",
+            measurementId: "G-MHD6VNFV62"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+
+        // DOM Elements
+        const expenseForm = document.getElementById('expenseForm');
+        const expensesContainer = document.getElementById('expensesContainer');
+        const totalAmountElement = document.getElementById('totalAmount');
+        const statusElement = document.getElementById('status');
+
+        // Set today's date as default
+        document.getElementById('date').valueAsDate = new Date();
+
+        // Show status message
+        function showStatus(message, isSuccess) {
+            statusElement.textContent = message;
+            statusElement.className = `status ${isSuccess ? 'success' : 'error'}`;
+            statusElement.style.display = 'block';
+            
+            setTimeout(() => {
+                statusElement.style.display = 'none';
+            }, 3000);
+        }
+
+        // Format currency
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('id-ID').format(amount);
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const options = { day: '2-digit', month: 'short', year: 'numeric' };
+            return new Date(dateString).toLocaleDateString('id-ID', options);
+        }
+
+        // Render expenses
+        async function renderExpenses() {
+            try {
+                expensesContainer.innerHTML = '<p style="text-align: center; color: #777; padding: 20px;">Memuat data...</p>';
+                
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                
+                const q = query(
+                    collection(db, "expenses"),
+                    where("date", "==", today.toISOString().split('T')[0]),
+                    orderBy("timestamp", "desc")
+                );
+                
+                const querySnapshot = await getDocs(q);
+                let total = 0;
+                let html = '';
+                
+                if (querySnapshot.empty) {
+                    html = '<p style="text-align: center; color: #777; padding: 20px;">Belum ada pengeluaran yang dicatat hari ini.</p>';
+                } else {
+                    querySnapshot.forEach((doc) => {
+                        const expense = doc.data();
+                        total += expense.amount;
+                        html += `
+                            <div class="expense-item">
+                                <div class="expense-details">
+                                    <div>${expense.description}</div>
+                                    <div class="expense-category">${expense.category}</div>
+                                    <div class="expense-date">${formatDate(expense.date)}</div>
+                                </div>
+                                <div class="expense-amount">Rp ${formatCurrency(expense.amount)}</div>
+                            </div>
+                        `;
+                    });
+                }
+                
+                expensesContainer.innerHTML = html;
+                totalAmountElement.textContent = formatCurrency(total);
+            } catch (error) {
+                console.error("Error getting documents: ", error);
+                expensesContainer.innerHTML = '<p style="text-align: center; color: #e53e3e; padding: 20px;">Gagal memuat data. Silakan coba lagi.</p>';
+            }
+        }
+
+        // Add expense
+        expenseForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const description = document.getElementById('description').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+            const category = document.getElementById('category').value;
+            const date = document.getElementById('date').value;
+            
+            try {
+                await addDoc(collection(db, "expenses"), {
+                    description: description,
+                    amount: amount,
+                    category: category,
+                    date: date,
+                    timestamp: new Date()
+                });
+                
+                showStatus('Pengeluaran berhasil ditambahkan!', true);
+                expenseForm.reset();
+                document.getElementById('date').valueAsDate = new Date();
+                renderExpenses();
+            } catch (error) {
+                console.error("Error adding document: ", error);
+                showStatus('Gagal menambahkan pengeluaran. Silakan coba lagi.', false);
+            }
+        });
+
+        // Initial render
+        renderExpenses();
+    </script>
+</body>
+</html>
