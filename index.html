@@ -2,269 +2,472 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control Cost - Catat Pengeluaran Harian</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Control Cost - Pengeluaran Harian</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --primary-yellow: #FFD700;
+            --dark-yellow: #FFC400;
+            --light-yellow: #FFEC8B;
+            --black: #000000;
+            --dark-gray: #121212;
+            --medium-gray: #1E1E1E;
+            --light-gray: #2D2D2D;
+            --white: #FFFFFF;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            color: #333;
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--dark-gray) 0%, var(--black) 100%);
+            color: var(--text-primary);
             min-height: 100vh;
+            padding-bottom: 70px;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .app-header {
+            background: linear-gradient(90deg, var(--black), #1a1a1a);
+            padding: 16px 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .app-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-yellow), var(--light-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .icon-btn {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-yellow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .icon-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: scale(1.1);
+        }
+
+        /* Main Content */
+        .main-content {
             padding: 20px;
-        }
-
-        .container {
-            max-width: 800px;
+            max-width: 500px;
             margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
         }
 
-        header {
-            background: linear-gradient(90deg, #ff7e5f, #feb47b);
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
+        /* Home View */
+        .home-view {
+            display: block;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        .summary-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
         }
 
-        .subtitle {
+        .summary-title {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .summary-amount {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-yellow), var(--light-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date-display {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            margin: 25px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--primary-yellow);
+        }
+
+        /* Expenses List */
+        .expenses-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .expense-item {
+            background: var(--medium-gray);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .expense-item:hover {
+            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .expense-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary-yellow), var(--dark-yellow));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--black);
+            font-size: 1.2rem;
+        }
+
+        .expense-details {
+            flex: 1;
+        }
+
+        .expense-description {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .expense-meta {
+            display: flex;
+            gap: 15px;
+        }
+
+        .expense-category, .expense-time {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .expense-amount {
+            font-weight: 700;
             font-size: 1.1rem;
-            opacity: 0.9;
+            color: var(--primary-yellow);
         }
 
-        .content {
-            padding: 30px;
+        /* Insert View */
+        .insert-view {
+            display: none;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-card {
+            background: var(--medium-gray);
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--primary-yellow);
+            font-size: 1.4rem;
         }
 
         .form-group {
             margin-bottom: 20px;
         }
 
-        label {
+        .form-label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 600;
-            color: #555;
+            font-weight: 500;
         }
 
-        input, textarea, select {
+        .form-input, .form-select, .form-textarea {
             width: 100%;
             padding: 14px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 16px;
-            transition: border-color 0.3s;
+            background: var(--light-gray);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
         }
 
-        input:focus, textarea:focus, select:focus {
-            border-color: #6a11cb;
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
             outline: none;
-            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+            border-color: var(--primary-yellow);
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
         }
 
-        button {
-            background: linear-gradient(90deg, #6a11cb, #2575fc);
-            color: white;
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, var(--primary-yellow), var(--dark-yellow));
+            color: var(--black);
             border: none;
-            padding: 14px 20px;
-            font-size: 18px;
-            border-radius: 10px;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
             width: 100%;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 10px;
         }
 
-        button:hover {
+        .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
         }
 
-        button:active {
+        .submit-btn:active {
             transform: translateY(0);
         }
 
-        .expenses-list {
-            margin-top: 40px;
-        }
-
-        .expenses-list h2 {
-            color: #6a11cb;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #eee;
-        }
-
-        .expense-item {
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        /* Footer Navigation */
+        .footer-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--dark-gray);
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
+            padding: 12px 0;
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            animation: fadeIn 0.5s ease-out;
+            gap: 4px;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            padding: 8px 20px;
+            border-radius: 8px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .nav-item.active {
+            color: var(--primary-yellow);
         }
 
-        .expense-details {
-            flex-grow: 1;
+        .nav-item i {
+            font-size: 1.3rem;
         }
 
-        .expense-amount {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: #ff7e5f;
-        }
-
-        .expense-category {
-            background-color: #e0e7ff;
-            color: #4f46e5;
-            padding: 3px 8px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            display: inline-block;
-            margin-top: 5px;
-        }
-
-        .expense-date {
-            font-size: 0.85rem;
-            color: #777;
-        }
-
-        .total-section {
-            background: linear-gradient(90deg, #6a11cb, #2575fc);
-            color: white;
+        /* Empty State */
+        .empty-state {
             text-align: center;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 30px;
+            padding: 40px 20px;
+            color: var(--text-secondary);
         }
 
-        .total-amount {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 10px 0;
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: rgba(255, 215, 0, 0.3);
         }
 
-        .status {
-            padding: 15px;
-            text-align: center;
-            margin: 20px 0;
-            border-radius: 10px;
-            font-weight: 600;
+        /* Status Message */
+        .status-message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: var(--primary-yellow);
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--primary-yellow);
+            z-index: 1000;
+            display: none;
+            backdrop-filter: blur(10px);
         }
 
-        .status.success {
-            background-color: #d1fae5;
-            color: #065f46;
-        }
-
-        .status.error {
-            background-color: #fee2e2;
-            color: #991b1b;
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                border-radius: 10px;
+        /* Responsive */
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 15px;
             }
             
-            h1 {
-                font-size: 2rem;
+            .app-header {
+                padding: 14px 15px;
             }
             
-            .content {
+            .summary-card {
+                padding: 16px;
+            }
+            
+            .summary-amount {
+                font-size: 1.8rem;
+            }
+            
+            .form-card {
                 padding: 20px;
-            }
-            
-            .expense-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .expense-amount {
-                margin-top: 10px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>💰 Control Cost</h1>
-            <p class="subtitle">Catat dan kelola pengeluaran harian Anda dengan mudah</p>
-        </header>
-        
-        <div class="content">
-            <div id="status" class="status" style="display: none;"></div>
-            
-            <form id="expenseForm">
-                <div class="form-group">
-                    <label for="description">Deskripsi Pengeluaran</label>
-                    <input type="text" id="description" placeholder="Contoh: Makan siang di restoran" required>
+    <!-- Status Message -->
+    <div class="status-message" id="statusMessage"></div>
+
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <h1 class="app-title">CONTROL COST</h1>
+            <div class="user-actions">
+                <div class="icon-btn">
+                    <i class="fas fa-bell"></i>
                 </div>
-                
-                <div class="form-group">
-                    <label for="amount">Jumlah (Rp)</label>
-                    <input type="number" id="amount" placeholder="Contoh: 50000" min="1" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="category">Kategori</label>
-                    <select id="category" required>
-                        <option value="">Pilih Kategori</option>
-                        <option value="Makanan">Makanan</option>
-                        <option value="Transportasi">Transportasi</option>
-                        <option value="Belanja">Belanja</option>
-                        <option value="Hiburan">Hiburan</option>
-                        <option value="Kesehatan">Kesehatan</option>
-                        <option value="Lainnya">Lainnya</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="date">Tanggal</label>
-                    <input type="date" id="date" required>
-                </div>
-                
-                <button type="submit">➕ Tambah Pengeluaran</button>
-            </form>
-            
-            <div class="total-section">
-                <p>Total Pengeluaran Hari Ini</p>
-                <div class="total-amount">Rp <span id="totalAmount">0</span></div>
-            </div>
-            
-            <div class="expenses-list">
-                <h2>🧾 Riwayat Pengeluaran</h2>
-                <div id="expensesContainer">
-                    <!-- Expenses will be added here by JavaScript -->
-                    <p style="text-align: center; color: #777; padding: 20px;">Belum ada pengeluaran yang dicatat.</p>
+                <div class="icon-btn">
+                    <i class="fas fa-cog"></i>
                 </div>
             </div>
         </div>
-    </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home View -->
+        <div class="home-view" id="homeView">
+            <div class="summary-card">
+                <div class="summary-title">Total Pengeluaran Hari Ini</div>
+                <div class="summary-amount">Rp <span id="totalAmount">0</span></div>
+                <div class="date-display" id="currentDate"></div>
+            </div>
+
+            <h2 class="section-title">
+                <i class="fas fa-receipt"></i>
+                Riwayat Pengeluaran
+            </h2>
+
+            <div class="expenses-list" id="expensesList">
+                <div class="empty-state">
+                    <i class="fas fa-receipt"></i>
+                    <p>Belum ada pengeluaran hari ini</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Insert View -->
+        <div class="insert-view" id="insertView">
+            <div class="form-card">
+                <h2 class="form-title">Tambah Pengeluaran</h2>
+                <form id="expenseForm">
+                    <div class="form-group">
+                        <label class="form-label">Deskripsi</label>
+                        <input type="text" class="form-input" id="description" placeholder="Apa yang Anda beli?" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Jumlah (Rp)</label>
+                        <input type="number" class="form-input" id="amount" placeholder="0" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Kategori</label>
+                        <select class="form-select" id="category" required>
+                            <option value="">Pilih Kategori</option>
+                            <option value="Makanan">Makanan</option>
+                            <option value="Transportasi">Transportasi</option>
+                            <option value="Belanja">Belanja</option>
+                            <option value="Hiburan">Hiburan</option>
+                            <option value="Kesehatan">Kesehatan</option>
+                            <option value="Pendidikan">Pendidikan</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Tanggal</label>
+                        <input type="date" class="form-input" id="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Catatan (Opsional)</label>
+                        <textarea class="form-textarea" id="notes" placeholder="Tambahkan catatan..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-plus-circle"></i> Tambah Pengeluaran
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <nav class="footer-nav">
+        <div class="nav-item active" data-view="home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </div>
+        <div class="nav-item" data-view="insert">
+            <i class="fas fa-plus-circle"></i>
+            <span>Tambah</span>
+        </div>
+    </nav>
 
     <!-- Firebase SDK -->
     <script type="module">
@@ -290,22 +493,51 @@
         const db = getFirestore(app);
 
         // DOM Elements
+        const homeView = document.getElementById('homeView');
+        const insertView = document.getElementById('insertView');
+        const navItems = document.querySelectorAll('.nav-item');
         const expenseForm = document.getElementById('expenseForm');
-        const expensesContainer = document.getElementById('expensesContainer');
+        const expensesList = document.getElementById('expensesList');
         const totalAmountElement = document.getElementById('totalAmount');
-        const statusElement = document.getElementById('status');
+        const currentDateElement = document.getElementById('currentDate');
+        const statusMessage = document.getElementById('statusMessage');
 
-        // Set today's date as default
-        document.getElementById('date').valueAsDate = new Date();
+        // Set today's date
+        const today = new Date();
+        document.getElementById('date').valueAsDate = today;
+
+        // Format current date display
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        currentDateElement.textContent = today.toLocaleDateString('id-ID', options);
+
+        // Navigation
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Update active state
+                navItems.forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+                
+                // Show selected view
+                const view = item.getAttribute('data-view');
+                if (view === 'home') {
+                    homeView.style.display = 'block';
+                    insertView.style.display = 'none';
+                } else {
+                    homeView.style.display = 'none';
+                    insertView.style.display = 'block';
+                }
+            });
+        });
 
         // Show status message
-        function showStatus(message, isSuccess) {
-            statusElement.textContent = message;
-            statusElement.className = `status ${isSuccess ? 'success' : 'error'}`;
-            statusElement.style.display = 'block';
+        function showStatus(message, isSuccess = true) {
+            statusMessage.textContent = message;
+            statusMessage.style.display = 'block';
+            statusMessage.style.borderColor = isSuccess ? '#FFD700' : '#FF4444';
+            statusMessage.style.color = isSuccess ? '#FFD700' : '#FF4444';
             
             setTimeout(() => {
-                statusElement.style.display = 'none';
+                statusMessage.style.display = 'none';
             }, 3000);
         }
 
@@ -314,23 +546,27 @@
             return new Intl.NumberFormat('id-ID').format(amount);
         }
 
-        // Format date
-        function formatDate(dateString) {
-            const options = { day: '2-digit', month: 'short', year: 'numeric' };
-            return new Date(dateString).toLocaleDateString('id-ID', options);
+        // Get category icon
+        function getCategoryIcon(category) {
+            const icons = {
+                'Makanan': 'fa-utensils',
+                'Transportasi': 'fa-bus',
+                'Belanja': 'fa-shopping-cart',
+                'Hiburan': 'fa-film',
+                'Kesehatan': 'fa-heartbeat',
+                'Pendidikan': 'fa-graduation-cap',
+                'Lainnya': 'fa-question-circle'
+            };
+            return icons[category] || 'fa-question-circle';
         }
 
         // Render expenses
         async function renderExpenses() {
             try {
-                expensesContainer.innerHTML = '<p style="text-align: center; color: #777; padding: 20px;">Memuat data...</p>';
-                
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
-                
+                const todayString = today.toISOString().split('T')[0];
                 const q = query(
                     collection(db, "expenses"),
-                    where("date", "==", today.toISOString().split('T')[0]),
+                    where("date", "==", todayString),
                     orderBy("timestamp", "desc")
                 );
                 
@@ -339,17 +575,32 @@
                 let html = '';
                 
                 if (querySnapshot.empty) {
-                    html = '<p style="text-align: center; color: #777; padding: 20px;">Belum ada pengeluaran yang dicatat hari ini.</p>';
+                    html = `
+                        <div class="empty-state">
+                            <i class="fas fa-receipt"></i>
+                            <p>Belum ada pengeluaran hari ini</p>
+                        </div>
+                    `;
                 } else {
                     querySnapshot.forEach((doc) => {
                         const expense = doc.data();
                         total += expense.amount;
+                        
                         html += `
                             <div class="expense-item">
+                                <div class="expense-icon">
+                                    <i class="fas ${getCategoryIcon(expense.category)}"></i>
+                                </div>
                                 <div class="expense-details">
-                                    <div>${expense.description}</div>
-                                    <div class="expense-category">${expense.category}</div>
-                                    <div class="expense-date">${formatDate(expense.date)}</div>
+                                    <div class="expense-description">${expense.description}</div>
+                                    <div class="expense-meta">
+                                        <div class="expense-category">
+                                            <i class="fas fa-tag"></i> ${expense.category}
+                                        </div>
+                                        <div class="expense-time">
+                                            <i class="fas fa-clock"></i> ${expense.time || '00:00'}
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="expense-amount">Rp ${formatCurrency(expense.amount)}</div>
                             </div>
@@ -357,11 +608,16 @@
                     });
                 }
                 
-                expensesContainer.innerHTML = html;
+                expensesList.innerHTML = html;
                 totalAmountElement.textContent = formatCurrency(total);
             } catch (error) {
                 console.error("Error getting documents: ", error);
-                expensesContainer.innerHTML = '<p style="text-align: center; color: #e53e3e; padding: 20px;">Gagal memuat data. Silakan coba lagi.</p>';
+                expensesList.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Gagal memuat data</p>
+                    </div>
+                `;
             }
         }
 
@@ -373,6 +629,11 @@
             const amount = parseFloat(document.getElementById('amount').value);
             const category = document.getElementById('category').value;
             const date = document.getElementById('date').value;
+            const notes = document.getElementById('notes').value;
+            
+            // Get current time
+            const now = new Date();
+            const timeString = now.toTimeString().split(' ')[0].substring(0, 5);
             
             try {
                 await addDoc(collection(db, "expenses"), {
@@ -380,16 +641,21 @@
                     amount: amount,
                     category: category,
                     date: date,
-                    timestamp: new Date()
+                    notes: notes,
+                    time: timeString,
+                    timestamp: now
                 });
                 
-                showStatus('Pengeluaran berhasil ditambahkan!', true);
+                showStatus('Pengeluaran berhasil ditambahkan!');
                 expenseForm.reset();
-                document.getElementById('date').valueAsDate = new Date();
+                document.getElementById('date').valueAsDate = today;
+                
+                // Switch to home view
+                navItems[0].click();
                 renderExpenses();
             } catch (error) {
                 console.error("Error adding document: ", error);
-                showStatus('Gagal menambahkan pengeluaran. Silakan coba lagi.', false);
+                showStatus('Gagal menambahkan pengeluaran!', false);
             }
         });
 
