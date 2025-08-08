@@ -46,7 +46,7 @@
             color: #FFD700;
         }
         
-        input, select, textarea {
+        input, select {
             width: 100%;
             padding: 12px;
             border: 2px solid #FFD700;
@@ -67,11 +67,6 @@
             width: 100%;
             font-weight: bold;
             margin-top: 10px;
-        }
-        
-        button:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
         }
         
         .status {
@@ -181,7 +176,7 @@
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
-        import { getFirestore, collection, addDoc, getDocs, query, where, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -216,7 +211,7 @@
             
             setTimeout(() => {
                 statusElement.style.display = 'none';
-            }, 3000);
+            }, 5000);
         }
 
         // Format currency
@@ -238,27 +233,35 @@
                 const today = new Date();
                 today.setHours(0, 0, 0, 0);
                 
+                // Query sederhana tanpa orderBy untuk menghindari masalah index
                 const q = query(
                     collection(db, "expenses"),
-                    where("date", "==", today.toISOString().split('T')[0]),
-                    orderBy("timestamp", "desc")
+                    where("date", "==", today.toISOString().split('T')[0])
                 );
                 
                 const querySnapshot = await getDocs(q);
                 let total = 0;
-                let html = '';
+                let expenses = [];
                 
-                if (querySnapshot.empty) {
+                querySnapshot.forEach((doc) => {
+                    const expense = doc.data();
+                    total += expense.amount;
+                    expenses.push(expense);
+                });
+                
+                // Sort data secara client-side
+                expenses.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                
+                let html = '';
+                if (expenses.length === 0) {
                     html = '<p style="text-align: center; color: #777; padding: 20px;">Belum ada pengeluaran yang dicatat hari ini.</p>';
                 } else {
-                    querySnapshot.forEach((doc) => {
-                        const expense = doc.data();
-                        total += expense.amount;
+                    expenses.forEach(expense => {
                         html += `
                             <div class="expense-item">
                                 <div><strong>${expense.description}</strong></div>
-                                <div class="expense-category">${expense.category}</div>
-                                <div>${formatDate(expense.date)}</div>
+                                <div style="color: #aaa; font-size: 0.9rem;">${expense.category}</div>
+                                <div style="color: #aaa; font-size: 0.9rem;">${formatDate(expense.date)}</div>
                                 <div class="expense-amount">Rp ${formatCurrency(expense.amount)}</div>
                             </div>
                         `;
@@ -269,8 +272,8 @@
                 totalAmountElement.textContent = formatCurrency(total);
             } catch (error) {
                 console.error("Error getting documents: ", error);
-                showStatus('Gagal memuat data. Pastikan aturan Firestore sudah diatur dengan benar.', false);
-                expensesContainer.innerHTML = '<p style="text-align: center; color: #ff6b6b; padding: 20px;">Gagal memuat data. Silakan cek koneksi dan aturan database.</p>';
+                showStatus(`Error: ${error.message}`, false);
+                expensesContainer.innerHTML = '<p style="text-align: center; color: #ff6b6b; padding: 20px;">Gagal memuat data. Silakan coba lagi.</p>';
             }
         }
 
@@ -298,7 +301,7 @@
                 renderExpenses();
             } catch (error) {
                 console.error("Error adding document: ", error);
-                showStatus('Gagal menambahkan pengeluaran. Pastikan aturan Firestore sudah diatur dengan benar.', false);
+                showStatus(`Gagal menambahkan: ${error.message}`, false);
             }
         });
 
