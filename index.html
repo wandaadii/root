@@ -21,13 +21,11 @@
             --danger-bg: rgba(255, 0, 0, 0.1);
             --warning-bg: rgba(255, 215, 0, 0.1);
         }
-        
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background-color: var(--secondary-black);
@@ -35,7 +33,6 @@
             height: 100vh;
             overflow: hidden;
         }
-        
         /* Page Containers */
         .page {
             display: none;
@@ -43,11 +40,9 @@
             height: 100vh;
             width: 100%;
         }
-        
         .page.active {
             display: flex;
         }
-        
         /* App Header */
         .app-header {
             background: linear-gradient(90deg, var(--primary-black), #1a1a1a);
@@ -62,18 +57,15 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.3);
             border-bottom: 1px solid rgba(255, 215, 0, 0.2);
         }
-        
         .app-header-title {
             font-size: 1.2rem;
             font-weight: 600;
         }
-        
         .user-section {
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        
         .user-avatar {
             width: 36px;
             height: 36px;
@@ -86,14 +78,12 @@
             color: var(--accent-yellow);
             border: 1px solid var(--accent-yellow);
         }
-        
         /* Main Content */
         .main-content {
             flex: 1;
             overflow-y: auto;
             padding: 15px;
         }
-        
         .section-title {
             font-size: 1.1rem;
             font-weight: 600;
@@ -103,7 +93,6 @@
             align-items: center;
             gap: 10px;
         }
-        
         /* Form Container */
         .form-container {
             background-color: var(--card-bg);
@@ -113,14 +102,12 @@
             margin-bottom: 20px;
             border: 1px solid var(--border-color);
         }
-        
         .form-label {
             font-weight: 500;
             font-size: 0.9rem;
             margin-bottom: 5px;
             color: var(--text-primary);
         }
-        
         .form-control, .form-select {
             border-radius: 8px;
             padding: 12px 15px;
@@ -129,18 +116,15 @@
             background-color: var(--input-bg);
             color: var(--text-primary);
         }
-        
         .form-control:focus, .form-select:focus {
             border-color: var(--accent-yellow);
             box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.2);
             color: var(--text-primary);
             background-color: var(--input-bg);
         }
-        
         .form-control::placeholder {
             color: var(--text-secondary);
         }
-        
         .btn-primary {
             background: linear-gradient(90deg, var(--accent-yellow), var(--accent-yellow-dark));
             border: none;
@@ -151,24 +135,20 @@
             margin-top: 10px;
             color: var(--primary-black);
         }
-        
         .btn-primary:hover {
             background: linear-gradient(90deg, var(--accent-yellow-dark), #e6c200);
             color: var(--primary-black);
         }
-        
         .btn-warning {
             background-color: var(--warning-bg);
             border: 1px solid var(--accent-yellow);
             color: var(--accent-yellow);
         }
-        
         .btn-danger {
             background-color: var(--danger-bg);
             border: 1px solid #dc3545;
             color: #dc3545;
         }
-        
         /* Summary Card */
         .summary-card {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
@@ -177,19 +157,16 @@
             padding: 20px;
             margin-bottom: 25px;
         }
-        
         .summary-title {
             font-size: 1rem;
             color: var(--text-secondary);
             margin-bottom: 8px;
         }
-        
         .summary-amount {
             font-size: 2rem;
             font-weight: 700;
             color: var(--accent-yellow);
         }
-        
         /* Expense Item */
         .expense-item {
             background-color: var(--card-bg);
@@ -199,36 +176,30 @@
             border: 1px solid var(--border-color);
             transition: transform 0.2s ease, border-color 0.2s ease;
         }
-        
         .expense-item:hover {
             border-color: rgba(255, 215, 0, 0.4);
             transform: translateY(-2px);
         }
-        
         .expense-header {
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
         }
-        
         .expense-description {
             font-weight: 500;
             font-size: 1.05rem;
         }
-        
         .expense-amount {
             font-weight: 700;
             font-size: 1.1rem;
             color: var(--accent-yellow);
         }
-        
         .expense-details {
             display: flex;
             justify-content: space-between;
             font-size: 0.85rem;
             color: var(--text-secondary);
         }
-        
         .expense-category {
             background-color: rgba(255, 215, 0, 0.1);
             color: var(--accent-yellow);
@@ -236,20 +207,17 @@
             border-radius: 12px;
             font-size: 0.75rem;
         }
-        
         /* Empty State */
         .empty-state {
             text-align: center;
             padding: 40px 20px;
             color: var(--text-secondary);
         }
-        
         .empty-state i {
             font-size: 3rem;
             margin-bottom: 15px;
             color: rgba(255, 215, 0, 0.2);
         }
-        
         /* Status Message */
         .status-message {
             padding: 12px;
@@ -258,19 +226,16 @@
             margin: 15px 0;
             display: none;
         }
-        
         .alert-success {
             background-color: var(--success-bg);
             color: #aaffaa;
             border: 1px solid rgba(0, 255, 0, 0.2);
         }
-        
         .alert-danger {
             background-color: var(--danger-bg);
             color: #ffaaaa;
             border: 1px solid rgba(255, 0, 0, 0.2);
         }
-        
         /* Bottom Navigation */
         .bottom-nav {
             position: fixed;
@@ -284,7 +249,6 @@
             border-top: 1px solid var(--border-color);
             z-index: 1000;
         }
-        
         .nav-item {
             display: flex;
             flex-direction: column;
@@ -294,27 +258,22 @@
             font-size: 0.75rem;
             transition: color 0.2s;
         }
-        
         .nav-item.active {
             color: var(--accent-yellow);
         }
-        
         .nav-item i {
             font-size: 1.25rem;
             margin-bottom: 4px;
         }
-        
         /* Loading Spinner */
         .spinner-border {
             width: 1rem;
             height: 1rem;
             border-width: 0.15em;
         }
-        
         .d-none {
             display: none;
         }
-        
         /* Report Section */
         .report-card {
             background-color: var(--card-bg);
@@ -324,32 +283,26 @@
             margin-bottom: 20px;
             border: 1px solid var(--border-color);
         }
-        
         .report-item {
             display: flex;
             justify-content: space-between;
             padding: 12px 0;
             border-bottom: 1px solid var(--border-color);
         }
-        
         .report-item:last-child {
             border-bottom: none;
         }
-        
         .report-label {
             color: var(--text-secondary);
         }
-        
         .report-value {
             font-weight: 500;
             color: var(--text-primary);
         }
-        
         .report-amount {
             font-weight: 700;
             color: var(--accent-yellow);
         }
-        
         /* Month Selector */
         .month-selector {
             display: flex;
@@ -357,7 +310,6 @@
             gap: 10px;
             margin-bottom: 20px;
         }
-        
         .month-btn {
             background: none;
             border: 1px solid var(--border-color);
@@ -369,7 +321,6 @@
             justify-content: center;
             color: var(--text-primary);
         }
-        
         .month-display {
             flex: 1;
             text-align: center;
@@ -377,7 +328,6 @@
             font-size: 1.1rem;
             color: var(--text-primary);
         }
-        
         /* Login Page */
         .auth-container {
             display: flex;
@@ -386,7 +336,6 @@
             height: 100vh;
             padding: 20px;
         }
-        
         .auth-card {
             background-color: var(--card-bg);
             border-radius: 12px;
@@ -396,18 +345,15 @@
             width: 100%;
             max-width: 400px;
         }
-        
         .auth-logo {
             text-align: center;
             margin-bottom: 25px;
         }
-        
         .auth-logo i {
             font-size: 3rem;
             color: var(--accent-yellow);
             margin-bottom: 15px;
         }
-        
         .auth-title {
             font-size: 1.5rem;
             font-weight: 700;
@@ -415,30 +361,25 @@
             margin-bottom: 5px;
             text-align: center;
         }
-        
         .auth-subtitle {
             font-size: 0.95rem;
             color: var(--text-secondary);
             text-align: center;
             margin-bottom: 25px;
         }
-        
         .auth-link {
             color: var(--accent-yellow);
             text-decoration: none;
         }
-        
         .auth-link:hover {
             text-decoration: underline;
         }
-        
         /* Action Buttons */
         .action-buttons {
             display: flex;
             gap: 10px;
             margin-top: 15px;
         }
-        
         .btn-edit {
             background-color: rgba(255, 215, 0, 0.2);
             border: 1px solid var(--accent-yellow);
@@ -447,7 +388,6 @@
             border-radius: 5px;
             font-size: 0.8rem;
         }
-        
         .btn-delete {
             background-color: rgba(255, 0, 0, 0.2);
             border: 1px solid #dc3545;
@@ -456,7 +396,6 @@
             border-radius: 5px;
             font-size: 0.8rem;
         }
-        
         /* Chart Container */
         .chart-container {
             background-color: var(--card-bg);
@@ -465,7 +404,6 @@
             margin-bottom: 20px;
             border: 1px solid var(--border-color);
         }
-        
         .chart-placeholder {
             height: 200px;
             display: flex;
@@ -475,7 +413,6 @@
             border: 1px dashed var(--border-color);
             border-radius: 8px;
         }
-        
         /* Budget Section */
         .budget-progress {
             height: 10px;
@@ -484,20 +421,17 @@
             margin: 10px 0;
             overflow: hidden;
         }
-        
         .budget-progress-bar {
             height: 100%;
             background: linear-gradient(90deg, var(--accent-yellow), var(--accent-yellow-dark));
             border-radius: 5px;
         }
-        
         .budget-amount {
             display: flex;
             justify-content: space-between;
             font-size: 0.9rem;
             color: var(--text-secondary);
         }
-        
         /* Settings Section */
         .settings-item {
             display: flex;
@@ -506,36 +440,43 @@
             padding: 15px 0;
             border-bottom: 1px solid var(--border-color);
         }
-        
         .settings-item:last-child {
             border-bottom: none;
         }
-        
         .settings-label {
             font-weight: 500;
             color: var(--text-primary);
         }
-        
         .settings-value {
             color: var(--text-secondary);
         }
-        
+        /* Daily Report Filter */
+        .date-filter {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            align-items: end;
+        }
+        .date-filter .form-group {
+            flex: 1;
+        }
         /* Responsive */
         @media (max-width: 576px) {
             .main-content {
                 padding: 10px;
             }
-            
             .form-container, .summary-card, .report-card {
                 padding: 15px;
             }
-            
             .summary-amount {
                 font-size: 1.7rem;
             }
-            
             .auth-card {
                 padding: 20px;
+            }
+            .date-filter {
+                flex-direction: column;
+                align-items: stretch;
             }
         }
     </style>
@@ -550,33 +491,27 @@
                     <h1 class="auth-title">CONTROL COST</h1>
                     <p class="auth-subtitle">Kelola pengeluaran harian Anda</p>
                 </div>
-                
                 <div id="loginStatusMessage" class="status-message"></div>
-                
                 <form id="loginForm">
                     <div class="mb-3">
                         <label for="loginEmail" class="form-label">Email</label>
                         <input type="email" class="form-control" id="loginEmail" placeholder="email@contoh.com" required>
                     </div>
-                    
                     <div class="mb-3">
                         <label for="loginPassword" class="form-label">Password</label>
                         <input type="password" class="form-control" id="loginPassword" placeholder="••••••••" required>
                     </div>
-                    
                     <button type="submit" class="btn btn-primary w-100" id="loginBtn">
                         <span id="loginText">Login</span>
                         <span id="loginSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                     </button>
                 </form>
-                
                 <div class="text-center mt-3">
                     <small class="text-secondary">Gunakan akun admin untuk login</small>
                 </div>
             </div>
         </div>
     </div>
-    
     <!-- Home Page -->
     <div id="homePage" class="page">
         <!-- App Header -->
@@ -589,7 +524,6 @@
                 </button>
             </div>
         </header>
-        
         <!-- Main Content -->
         <main class="main-content">
             <div class="summary-card">
@@ -597,7 +531,6 @@
                 <div class="summary-amount">Rp <span id="totalAmount">0</span></div>
                 <div class="summary-title" id="currentDate"></div>
             </div>
-            
             <!-- Budget Section -->
             <div class="report-card">
                 <h3 class="section-title mb-3">
@@ -616,12 +549,10 @@
                     <span><span id="budgetPercentage">0</span>%</span>
                 </div>
             </div>
-            
             <h2 class="section-title">
                 <i class="bi bi-receipt"></i>
                 Riwayat Pengeluaran
             </h2>
-            
             <div id="expensesContainer">
                 <div class="empty-state">
                     <i class="bi bi-receipt"></i>
@@ -629,7 +560,6 @@
                 </div>
             </div>
         </main>
-        
         <!-- Bottom Navigation -->
         <nav class="bottom-nav">
             <a href="#" class="nav-item active" id="homeNav">
@@ -650,7 +580,6 @@
             </a>
         </nav>
     </div>
-    
     <!-- Input Page -->
     <div id="inputPage" class="page">
         <!-- App Header -->
@@ -663,26 +592,21 @@
                 </button>
             </div>
         </header>
-        
         <!-- Main Content -->
         <main class="main-content">
             <section class="input-section">
                 <div class="form-container">
                     <div id="inputStatusMessage" class="status-message"></div>
-                    
                     <form id="expenseForm">
                         <input type="hidden" id="documentId">
-                        
                         <div class="mb-3">
                             <label for="description" class="form-label">Deskripsi</label>
                             <input type="text" class="form-control" id="description" placeholder="Apa yang Anda beli?" required>
                         </div>
-                        
                         <div class="mb-3">
                             <label for="amount" class="form-label">Jumlah (Rp)</label>
                             <input type="number" class="form-control" id="amount" placeholder="0" min="1" required>
                         </div>
-                        
                         <div class="mb-3">
                             <label for="category" class="form-label">Kategori</label>
                             <select class="form-select" id="category" required>
@@ -698,17 +622,14 @@
                                 <option value="Lainnya">Lainnya</option>
                             </select>
                         </div>
-                        
                         <div class="mb-3">
                             <label for="date" class="form-label">Tanggal</label>
                             <input type="date" class="form-control" id="date" required>
                         </div>
-                        
                         <div class="mb-3">
                             <label for="notes" class="form-label">Catatan (Opsional)</label>
                             <textarea class="form-control" id="notes" rows="2" placeholder="Tambahkan catatan..."></textarea>
                         </div>
-                        
                         <button type="submit" class="btn btn-primary w-100" id="submitBtn">
                             <span id="submitText">Tambah Pengeluaran</span>
                             <span id="submitSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
@@ -717,7 +638,6 @@
                 </div>
             </section>
         </main>
-        
         <!-- Bottom Navigation -->
         <nav class="bottom-nav">
             <a href="#" class="nav-item" id="homeNav2">
@@ -738,7 +658,6 @@
             </a>
         </nav>
     </div>
-    
     <!-- Report Page -->
     <div id="reportPage" class="page">
         <!-- App Header -->
@@ -751,9 +670,37 @@
                 </button>
             </div>
         </header>
-        
         <!-- Main Content -->
         <main class="main-content">
+            <!-- Daily Report Filter -->
+            <div class="report-card">
+                <h3 class="section-title mb-3">
+                    <i class="bi bi-calendar-day"></i>
+                    Laporan Harian
+                </h3>
+                <div class="date-filter">
+                    <div class="form-group">
+                        <label for="dailyReportDate" class="form-label">Pilih Tanggal</label>
+                        <input type="date" class="form-control" id="dailyReportDate">
+                    </div>
+                </div>
+                <div class="report-item">
+                    <span class="report-label">Total Pengeluaran</span>
+                    <span class="report-amount">Rp <span id="dailyTotal">0</span></span>
+                </div>
+                <div class="report-item">
+                    <span class="report-label">Jumlah Transaksi</span>
+                    <span class="report-value"><span id="dailyTransactionCount">0</span> transaksi</span>
+                </div>
+                <h4 class="mt-4 mb-3">Detail Pengeluaran</h4>
+                <div id="dailyExpensesList">
+                    <div class="empty-state">
+                        <p>Pilih tanggal untuk melihat laporan</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Monthly Report -->
             <div class="month-selector">
                 <button class="month-btn" id="prevMonth">
                     <i class="bi bi-chevron-left"></i>
@@ -763,28 +710,23 @@
                     <i class="bi bi-chevron-right"></i>
                 </button>
             </div>
-            
             <div class="report-card">
                 <h3 class="section-title mb-3">
                     <i class="bi bi-calendar-month"></i>
                     Laporan Bulanan
                 </h3>
-                
                 <div class="report-item">
                     <span class="report-label">Total Pengeluaran</span>
                     <span class="report-amount">Rp <span id="monthlyTotal">0</span></span>
                 </div>
-                
                 <div class="report-item">
                     <span class="report-label">Rata-rata Harian</span>
                     <span class="report-value">Rp <span id="dailyAverage">0</span></span>
                 </div>
-                
                 <div class="report-item">
                     <span class="report-label">Jumlah Transaksi</span>
                     <span class="report-value"><span id="transactionCount">0</span> transaksi</span>
                 </div>
-                
                 <h4 class="mt-4 mb-3">Pengeluaran per Kategori</h4>
                 <div id="categoryReport">
                     <div class="empty-state">
@@ -792,7 +734,6 @@
                     </div>
                 </div>
             </div>
-            
             <div class="chart-container">
                 <h3 class="section-title mb-3">
                     <i class="bi bi-graph-up"></i>
@@ -805,30 +746,25 @@
                     </div>
                 </div>
             </div>
-            
             <div class="report-card">
                 <h3 class="section-title mb-3">
                     <i class="bi bi-calendar-year"></i>
                     Laporan Tahunan
                 </h3>
-                
                 <div class="report-item">
                     <span class="report-label">Total Pengeluaran Tahun Ini</span>
                     <span class="report-amount">Rp <span id="yearlyTotal">0</span></span>
                 </div>
-                
                 <div class="report-item">
                     <span class="report-label">Rata-rata Bulanan</span>
                     <span class="report-value">Rp <span id="monthlyAverage">0</span></span>
                 </div>
-                
                 <div class="report-item">
                     <span class="report-label">Bulan dengan Pengeluaran Tertinggi</span>
                     <span class="report-value"><span id="highestMonth">-</span></span>
                 </div>
             </div>
         </main>
-        
         <!-- Bottom Navigation -->
         <nav class="bottom-nav">
             <a href="#" class="nav-item" id="homeNav3">
@@ -849,7 +785,6 @@
             </a>
         </nav>
     </div>
-    
     <!-- Settings Page -->
     <div id="settingsPage" class="page">
         <!-- App Header -->
@@ -862,7 +797,6 @@
                 </button>
             </div>
         </header>
-        
         <!-- Main Content -->
         <main class="main-content">
             <div class="report-card">
@@ -870,76 +804,63 @@
                     <i class="bi bi-person-circle"></i>
                     Profil Pengguna
                 </h3>
-                
                 <div class="settings-item">
                     <span class="settings-label">Nama</span>
                     <span class="settings-value" id="userName">-</span>
                 </div>
-                
                 <div class="settings-item">
                     <span class="settings-label">Email</span>
                     <span class="settings-value" id="userEmail">-</span>
                 </div>
-                
                 <div class="settings-item">
                     <span class="settings-label">Tanggal Bergabung</span>
                     <span class="settings-value" id="userJoinDate">-</span>
                 </div>
             </div>
-            
             <div class="report-card">
                 <h3 class="section-title mb-3">
                     <i class="bi bi-piggy-bank"></i>
                     Pengaturan Budget
                 </h3>
-                
                 <div class="settings-item">
                     <span class="settings-label">Budget Bulanan</span>
                     <span class="settings-value">Rp <span id="currentBudgetLimit">5.000.000</span></span>
                 </div>
-                
                 <div class="settings-item">
                     <span class="settings-label">Ubah Budget</span>
                     <button class="btn btn-sm btn-warning" id="changeBudgetBtn">Ubah</button>
                 </div>
             </div>
-            
             <div class="report-card">
                 <h3 class="section-title mb-3">
                     <i class="bi bi-shield-lock"></i>
                     Keamanan
                 </h3>
-                
                 <div class="settings-item">
                     <span class="settings-label">Ganti Password</span>
                     <button class="btn btn-sm btn-warning" id="changePasswordBtn">Ganti</button>
                 </div>
             </div>
-            
             <div class="report-card">
                 <h3 class="section-title mb-3">
                     <i class="bi bi-info-circle"></i>
                     Tentang Aplikasi
                 </h3>
-                
                 <div class="settings-item">
                     <span class="settings-label">Versi Aplikasi</span>
                     <span class="settings-value">v1.0.0</span>
                 </div>
-                
                 <div class="settings-item">
                     <span class="settings-label">Developer</span>
                     <span class="settings-value">Control Cost Team</span>
                 </div>
             </div>
-            
             <div class="text-center mt-4">
                 <button class="btn btn-danger" id="logoutBtn">
                     <i class="bi bi-box-arrow-right"></i> Logout
                 </button>
             </div>
         </main>
-        
         <!-- Bottom Navigation -->
         <nav class="bottom-nav">
             <a href="#" class="nav-item" id="homeNav4">
@@ -960,16 +881,15 @@
             </a>
         </nav>
     </div>
-    
     <!-- Firebase SDK -->
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, deleteDoc, doc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
         
-        // Your web app's Firebase configuration (dari percakapan sebelumnya)
+        // Your web app's Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyBbZPb47j7iajsk31mieUVq8VnCd7TXppc",
             authDomain: "control-cost-31f1d.firebaseapp.com",
@@ -992,17 +912,13 @@
         const inputPage = document.getElementById('inputPage');
         const reportPage = document.getElementById('reportPage');
         const settingsPage = document.getElementById('settingsPage');
-        
         const loginForm = document.getElementById('loginForm');
         const expenseForm = document.getElementById('expenseForm');
-        
         const loginStatusMessage = document.getElementById('loginStatusMessage');
         const inputStatusMessage = document.getElementById('inputStatusMessage');
-        
         const expensesContainer = document.getElementById('expensesContainer');
         const totalAmountElement = document.getElementById('totalAmount');
         const currentDateElement = document.getElementById('currentDate');
-        
         const monthlyTotalElement = document.getElementById('monthlyTotal');
         const dailyAverageElement = document.getElementById('dailyAverage');
         const transactionCountElement = document.getElementById('transactionCount');
@@ -1011,65 +927,65 @@
         const monthlyAverageElement = document.getElementById('monthlyAverage');
         const highestMonthElement = document.getElementById('highestMonth');
         const currentMonthDisplay = document.getElementById('currentMonthDisplay');
-        
         const budgetUsedElement = document.getElementById('budgetUsed');
         const budgetRemainingElement = document.getElementById('budgetRemaining');
         const budgetPercentageElement = document.getElementById('budgetPercentage');
         const budgetProgressBar = document.getElementById('budgetProgressBar');
-        
         const documentIdInput = document.getElementById('documentId');
         const submitBtn = document.getElementById('submitBtn');
         const submitText = document.getElementById('submitText');
         const submitSpinner = document.getElementById('submitSpinner');
-        
         const loginBtn = document.getElementById('loginBtn');
         const loginText = document.getElementById('loginText');
         const loginSpinner = document.getElementById('loginSpinner');
-        
         // User profile elements
         const userNameElement = document.getElementById('userName');
         const userEmailElement = document.getElementById('userEmail');
         const userJoinDateElement = document.getElementById('userJoinDate');
-        
         // Navigation Elements
         const homeNav = document.getElementById('homeNav');
         const inputNav = document.getElementById('inputNav');
         const reportNav = document.getElementById('reportNav');
         const settingsNav = document.getElementById('settingsNav');
-        
         const homeNav2 = document.getElementById('homeNav2');
         const inputNav2 = document.getElementById('inputNav2');
         const reportNav2 = document.getElementById('reportNav2');
         const settingsNav2 = document.getElementById('settingsNav2');
-        
         const homeNav3 = document.getElementById('homeNav3');
         const inputNav3 = document.getElementById('inputNav3');
         const reportNav3 = document.getElementById('reportNav3');
         const settingsNav3 = document.getElementById('settingsNav3');
-        
         const homeNav4 = document.getElementById('homeNav4');
         const inputNav4 = document.getElementById('inputNav4');
         const reportNav4 = document.getElementById('reportNav4');
         const settingsNav4 = document.getElementById('settingsNav4');
-        
         const prevMonth = document.getElementById('prevMonth');
         const nextMonth = document.getElementById('nextMonth');
-        
         // Logout buttons
         const homeLogoutBtn = document.getElementById('homeLogoutBtn');
         const inputLogoutBtn = document.getElementById('inputLogoutBtn');
         const reportLogoutBtn = document.getElementById('reportLogoutBtn');
         const settingsLogoutBtn = document.getElementById('settingsLogoutBtn');
         const logoutBtn = document.getElementById('logoutBtn');
+        // Settings buttons
+        const changeBudgetBtn = document.getElementById('changeBudgetBtn');
+        const currentBudgetLimitElement = document.getElementById('currentBudgetLimit');
+        const changePasswordBtn = document.getElementById('changePasswordBtn');
+        // Daily report elements
+        const dailyReportDate = document.getElementById('dailyReportDate');
+        const dailyTotalElement = document.getElementById('dailyTotal');
+        const dailyTransactionCountElement = document.getElementById('dailyTransactionCount');
+        const dailyExpensesList = document.getElementById('dailyExpensesList');
         
         // State variables
         let currentUser = null;
         let reportDate = new Date();
-        const budgetLimit = 5000000; // Rp 5.000.000
+        let budgetLimit = 5000000; // Default budget limit
         
         // Set today's date
         const today = new Date();
         document.getElementById('date').valueAsDate = today;
+        dailyReportDate.valueAsDate = today; // Set default date for daily report
         
         // Format current date display
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -1080,7 +996,6 @@
             element.textContent = message;
             element.className = `status-message ${isSuccess ? 'alert-success' : 'alert-danger'}`;
             element.style.display = 'block';
-            
             setTimeout(() => {
                 element.style.display = 'none';
             }, 3000);
@@ -1111,7 +1026,6 @@
             inputPage.classList.remove('active');
             reportPage.classList.remove('active');
             settingsPage.classList.remove('active');
-            
             // Show requested page
             document.getElementById(pageId).classList.add('active');
         }
@@ -1136,16 +1050,13 @@
             if (user) {
                 const displayName = user.email.split('@')[0];
                 const avatarText = displayName.charAt(0).toUpperCase();
-                
                 // Update avatars
                 document.querySelectorAll('.user-avatar').forEach(avatar => {
                     avatar.textContent = avatarText;
                 });
-                
                 // Update profile info
                 userNameElement.textContent = displayName;
                 userEmailElement.textContent = user.email;
-                
                 if (user.metadata && user.metadata.creationTime) {
                     const creationDate = new Date(user.metadata.creationTime);
                     userJoinDateElement.textContent = creationDate.toLocaleDateString('id-ID');
@@ -1153,17 +1064,41 @@
             }
         }
         
+        // Load budget limit from localStorage
+        function loadBudgetLimit() {
+            if (currentUser) {
+                const savedLimit = localStorage.getItem(`budgetLimit_${currentUser.uid}`);
+                if (savedLimit) {
+                    budgetLimit = parseFloat(savedLimit);
+                } else {
+                    budgetLimit = 5000000; // Default jika tidak ada di localStorage
+                }
+            }
+        }
+        
+        // Save budget limit to localStorage
+        function saveBudgetLimit(newLimit) {
+            if (currentUser) {
+                localStorage.setItem(`budgetLimit_${currentUser.uid}`, newLimit.toString());
+                budgetLimit = newLimit; // Update variabel global
+                // Refresh tampilan budget dan daftar pengeluaran
+                renderExpenses();
+            }
+        }
+        
         // Update budget display
         function updateBudgetDisplay(usedAmount) {
+            // Muat budgetLimit dari localStorage saat ini juga
+            loadBudgetLimit();
             const used = usedAmount;
-            const remaining = budgetLimit - used;
-            const percentage = Math.min(100, Math.round((used / budgetLimit) * 100));
-            
+            const remaining = Math.max(0, budgetLimit - used); // Hindari nilai negatif
+            const percentage = budgetLimit > 0 ? Math.min(100, Math.round((used / budgetLimit) * 100)) : 0;
             budgetUsedElement.textContent = formatCurrency(used);
             budgetRemainingElement.textContent = formatCurrency(remaining);
+            document.getElementById('budgetLimit').textContent = formatCurrency(budgetLimit); // Update tampilan di home juga
+            currentBudgetLimitElement.textContent = formatCurrency(budgetLimit); // Update tampilan di settings juga
             budgetPercentageElement.textContent = percentage;
             budgetProgressBar.style.width = `${percentage}%`;
-            
             // Change color based on percentage
             if (percentage > 90) {
                 budgetProgressBar.style.background = 'linear-gradient(90deg, #ff4444, #cc0000)';
@@ -1177,32 +1112,25 @@
         // Render expenses
         async function renderExpenses() {
             if (!currentUser) return;
-            
             try {
                 expensesContainer.innerHTML = '<div class="empty-state"><p>Memuat data...</p></div>';
-                
                 const todayString = today.toISOString().split('T')[0];
-                
                 // Query tanpa orderBy untuk menghindari masalah index
                 const q = query(
                     collection(db, "expenses"),
                     where("userId", "==", currentUser.uid),
                     where("date", "==", todayString)
                 );
-                
                 const querySnapshot = await getDocs(q);
                 let total = 0;
                 let expenses = [];
-                
                 querySnapshot.forEach((doc) => {
                     const expense = doc.data();
                     total += expense.amount;
                     expenses.push({ id: doc.id, ...expense });
                 });
-                
                 // Sort data secara client-side
                 expenses.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-                
                 let html = '';
                 if (expenses.length === 0) {
                     html = `
@@ -1235,27 +1163,28 @@
                         `;
                     });
                 }
-                
                 expensesContainer.innerHTML = html;
                 totalAmountElement.textContent = formatCurrency(total);
-                
                 // Update budget display
                 updateBudgetDisplay(total);
-                
                 // Add event listeners for edit and delete buttons
-                document.querySelectorAll('.btn-edit').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const docId = e.currentTarget.getAttribute('data-id');
-                        editExpense(docId);
+                // Tunda sedikit untuk memastikan DOM terupdate, lalu tambahkan event listener
+                setTimeout(() => {
+                    document.querySelectorAll('.btn-edit').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            e.preventDefault(); // Tambahkan preventDefault
+                            const docId = e.currentTarget.getAttribute('data-id');
+                            editExpense(docId);
+                        });
                     });
-                });
-                
-                document.querySelectorAll('.btn-delete').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const docId = e.currentTarget.getAttribute('data-id');
-                        deleteExpense(docId);
+                    document.querySelectorAll('.btn-delete').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            e.preventDefault(); // Tambahkan preventDefault
+                            const docId = e.currentTarget.getAttribute('data-id');
+                            deleteExpense(docId);
+                        });
                     });
-                });
+                }, 0); // Gunakan setTimeout 0 untuk menjadwalkan setelah render selesai
             } catch (error) {
                 console.error("Error getting documents: ", error);
                 expensesContainer.innerHTML = `
@@ -1272,10 +1201,8 @@
             try {
                 const docRef = doc(db, "expenses", docId);
                 const docSnap = await getDoc(docRef);
-                
                 if (docSnap.exists()) {
                     const expense = docSnap.data();
-                    
                     // Fill form with expense data
                     documentIdInput.value = docId;
                     document.getElementById('description').value = expense.description;
@@ -1283,10 +1210,8 @@
                     document.getElementById('category').value = expense.category;
                     document.getElementById('date').value = expense.date;
                     document.getElementById('notes').value = expense.notes || '';
-                    
                     // Change button text
                     submitText.textContent = 'Update Pengeluaran';
-                    
                     // Show input page
                     showPage('inputPage');
                 } else {
@@ -1294,7 +1219,7 @@
                 }
             } catch (error) {
                 console.error("Error getting document: ", error);
-                showStatus(inputStatusMessage, 'Gagal mengambil data: ' + error.message, false);
+                showStatus(inputStatusMessage, 'Gagal mengambil  ' + error.message, false);
             }
         }
         
@@ -1313,57 +1238,125 @@
             }
         }
         
-        // Generate report
-        async function generateReport() {
+        // Generate daily report
+        async function generateDailyReport(selectedDate) {
             if (!currentUser) return;
-            
             try {
-                // Get current month and year
-                const year = reportDate.getFullYear();
-                const month = reportDate.getMonth();
+                dailyExpensesList.innerHTML = '<div class="empty-state"><p>Memuat laporan...</p></div>';
+                dailyTotalElement.textContent = '0';
+                dailyTransactionCountElement.textContent = '0';
+
+                // Format tanggal untuk query
+                const selectedDateString = selectedDate.toISOString().split('T')[0];
                 
-                // Start and end of month
-                const startDate = new Date(year, month, 1);
-                const endDate = new Date(year, month + 1, 0, 23, 59, 59);
-                
-                // Query for current month
+                // Query untuk pengeluaran pada tanggal tertentu
                 const q = query(
                     collection(db, "expenses"),
                     where("userId", "==", currentUser.uid),
-                    where("date", ">=", startDate.toISOString().split('T')[0]),
-                    where("date", "<=", endDate.toISOString().split('T')[0])
+                    where("date", "==", selectedDateString)
                 );
-                
                 const querySnapshot = await getDocs(q);
-                let total = 0;
-                let transactions = 0;
-                const categoryTotals = {};
                 
+                let total = 0;
+                let transactionCount = 0;
+                let expensesHtml = '';
+                
+                if (querySnapshot.empty) {
+                    expensesHtml = '<div class="empty-state"><p>Tidak ada pengeluaran pada tanggal ini</p></div>';
+                } else {
+                    querySnapshot.forEach((doc) => {
+                        const expense = doc.data();
+                        total += expense.amount;
+                        transactionCount++;
+                        
+                        expensesHtml += `
+                            <div class="expense-item">
+                                <div class="expense-header">
+                                    <div class="expense-description">${expense.description}</div>
+                                    <div class="expense-amount">Rp ${formatCurrency(expense.amount)}</div>
+                                </div>
+                                <div class="expense-details">
+                                    <div class="expense-category">${expense.category}</div>
+                                    <div>${formatDate(expense.date)}</div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+                
+                // Update UI
+                dailyTotalElement.textContent = formatCurrency(total);
+                dailyTransactionCountElement.textContent = transactionCount;
+                dailyExpensesList.innerHTML = expensesHtml;
+                
+            } catch (error) {
+                console.error("Error generating daily report: ", error);
+                showStatus(inputStatusMessage, 'Gagal menghasilkan laporan harian: ' + error.message, false);
+                dailyExpensesList.innerHTML = '<div class="empty-state"><p>Gagal memuat laporan</p></div>';
+            }
+        }
+        
+        // Generate monthly/yearly report
+        async function generateReport() {
+            if (!currentUser) return;
+            try {
+                // Tampilkan loading state
+                categoryReportElement.innerHTML = '<div class="empty-state"><p>Memuat laporan...</p></div>';
+                monthlyTotalElement.textContent = '0';
+                dailyAverageElement.textContent = '0';
+                transactionCountElement.textContent = '0';
+                yearlyTotalElement.textContent = '0';
+                monthlyAverageElement.textContent = '0';
+                highestMonthElement.textContent = '-';
+
+                // Ambil semua pengeluaran pengguna
+                const q = query(
+                    collection(db, "expenses"),
+                    where("userId", "==", currentUser.uid)
+                );
+                const querySnapshot = await getDocs(q);
+                
+                // Konversi ke array untuk memudahkan filtering
+                const allExpenses = [];
                 querySnapshot.forEach((doc) => {
-                    const expense = doc.data();
-                    total += expense.amount;
-                    transactions++;
-                    
+                    allExpenses.push({ id: doc.id, ...doc.data() });
+                });
+
+                // --- Laporan Bulanan ---
+                const reportYear = reportDate.getFullYear();
+                const reportMonth = reportDate.getMonth(); // 0-11
+
+                const monthlyExpenses = allExpenses.filter(expense => {
+                    const expenseDate = new Date(expense.date);
+                    return expenseDate.getFullYear() === reportYear && expenseDate.getMonth() === reportMonth;
+                });
+
+                let monthlyTotal = 0;
+                let transactionCount = 0;
+                const categoryTotals = {};
+
+                monthlyExpenses.forEach(expense => {
+                    monthlyTotal += expense.amount;
+                    transactionCount++;
                     if (categoryTotals[expense.category]) {
                         categoryTotals[expense.category] += expense.amount;
                     } else {
                         categoryTotals[expense.category] = expense.amount;
                     }
                 });
-                
-                // Calculate daily average
-                const daysInMonth = new Date(year, month + 1, 0).getDate();
-                const dailyAverage = total / daysInMonth;
-                
-                // Update UI
-                monthlyTotalElement.textContent = formatCurrency(total);
+
+                const daysInMonth = new Date(reportYear, reportMonth + 1, 0).getDate();
+                const dailyAverage = monthlyTotal / daysInMonth;
+
+                // Update UI Laporan Bulanan
+                monthlyTotalElement.textContent = formatCurrency(monthlyTotal);
                 dailyAverageElement.textContent = formatCurrency(dailyAverage);
-                transactionCountElement.textContent = transactions;
-                
-                // Generate category report
+                transactionCountElement.textContent = transactionCount;
+
+                // Buat laporan kategori
                 let categoryHtml = '';
                 for (const [category, amount] of Object.entries(categoryTotals)) {
-                    const percentage = ((amount / total) * 100).toFixed(1);
+                    const percentage = monthlyTotal > 0 ? ((amount / monthlyTotal) * 100).toFixed(1) : '0.0';
                     categoryHtml += `
                         <div class="report-item">
                             <span class="report-label">${category}</span>
@@ -1371,86 +1364,71 @@
                         </div>
                     `;
                 }
-                
-                categoryReportElement.innerHTML = categoryHtml || '<div class="empty-state"><p>Belum ada data</p></div>';
-                
-                // Get yearly data
-                const startOfYear = new Date(year, 0, 1);
-                const endOfYear = new Date(year, 11, 31, 23, 59, 59);
-                
-                const yearlyQ = query(
-                    collection(db, "expenses"),
-                    where("userId", "==", currentUser.uid),
-                    where("date", ">=", startOfYear.toISOString().split('T')[0]),
-                    where("date", "<=", endOfYear.toISOString().split('T')[0])
-                );
-                
-                const yearlySnapshot = await getDocs(yearlyQ);
+                categoryReportElement.innerHTML = categoryHtml || '<div class="empty-state"><p>Belum ada data pengeluaran di bulan ini</p></div>';
+
+                // --- Laporan Tahunan ---
+                const yearlyExpenses = allExpenses.filter(expense => {
+                    const expenseDate = new Date(expense.date);
+                    return expenseDate.getFullYear() === reportYear;
+                });
+
                 let yearlyTotal = 0;
                 const monthlyTotals = {};
-                
-                yearlySnapshot.forEach((doc) => {
-                    const expense = doc.data();
+
+                yearlyExpenses.forEach(expense => {
                     yearlyTotal += expense.amount;
-                    
                     const expenseDate = new Date(expense.date);
-                    const expenseMonth = expenseDate.getMonth();
-                    
-                    if (monthlyTotals[expenseMonth]) {
-                        monthlyTotals[expenseMonth] += expense.amount;
+                    const monthIndex = expenseDate.getMonth(); // 0-11
+                    if (monthlyTotals[monthIndex] !== undefined) {
+                        monthlyTotals[monthIndex] += expense.amount;
                     } else {
-                        monthlyTotals[expenseMonth] = expense.amount;
+                        monthlyTotals[monthIndex] = expense.amount;
                     }
                 });
-                
-                // Calculate monthly average
+
                 const monthlyAverage = yearlyTotal / 12;
-                
-                // Find highest month
+
+                // Temukan bulan dengan pengeluaran tertinggi
                 let highestMonthTotal = 0;
-                let highestMonthIndex = 0;
+                let highestMonthIndex = -1;
                 for (const [monthIndex, total] of Object.entries(monthlyTotals)) {
                     if (total > highestMonthTotal) {
                         highestMonthTotal = total;
                         highestMonthIndex = parseInt(monthIndex);
                     }
                 }
-                
+
                 const monthNames = [
                     'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
                     'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
                 ];
-                
-                const highestMonthName = monthNames[highestMonthIndex] || '-';
-                
-                // Update yearly UI
+                const highestMonthName = highestMonthIndex >= 0 ? monthNames[highestMonthIndex] : '-';
+
+                // Update UI Laporan Tahunan
                 yearlyTotalElement.textContent = formatCurrency(yearlyTotal);
                 monthlyAverageElement.textContent = formatCurrency(monthlyAverage);
                 highestMonthElement.textContent = `${highestMonthName} (Rp ${formatCurrency(highestMonthTotal)})`;
-                
+
             } catch (error) {
                 console.error("Error generating report: ", error);
                 showStatus(inputStatusMessage, 'Gagal menghasilkan laporan: ' + error.message, false);
+                categoryReportElement.innerHTML = '<div class="empty-state"><p>Gagal memuat laporan</p></div>';
             }
         }
         
         // Add/update expense
         expenseForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
             if (!currentUser) {
                 showStatus(inputStatusMessage, 'Anda harus login terlebih dahulu!', false);
                 return;
             }
-            
             setLoadingState(submitBtn, submitText, submitSpinner, true);
-            
             const description = document.getElementById('description').value;
             const amount = parseFloat(document.getElementById('amount').value);
             const category = document.getElementById('category').value;
             const date = document.getElementById('date').value;
             const notes = document.getElementById('notes').value;
-            
             try {
                 const expenseData = {
                     userId: currentUser.uid,
@@ -1461,7 +1439,6 @@
                     notes: notes,
                     timestamp: new Date()
                 };
-                
                 if (documentIdInput.value) {
                     // Update existing document
                     const docRef = doc(db, "expenses", documentIdInput.value);
@@ -1472,13 +1449,11 @@
                     await addDoc(collection(db, "expenses"), expenseData);
                     showStatus(inputStatusMessage, 'Pengeluaran berhasil ditambahkan!', true);
                 }
-                
                 // Reset form
                 expenseForm.reset();
                 document.getElementById('date').valueAsDate = today;
                 documentIdInput.value = '';
                 submitText.textContent = 'Tambah Pengeluaran';
-                
                 // Switch to home view
                 showPage('homePage');
                 renderExpenses();
@@ -1494,12 +1469,9 @@
         // Login
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
             setLoadingState(loginBtn, loginText, loginSpinner, true);
-            
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
-            
             try {
                 await signInWithEmailAndPassword(auth, email, password);
                 showStatus(loginStatusMessage, 'Login berhasil!', true);
@@ -1525,7 +1497,6 @@
             e.preventDefault();
             showPage('homePage');
         });
-        
         inputNav.addEventListener('click', (e) => {
             e.preventDefault();
             expenseForm.reset();
@@ -1534,24 +1505,22 @@
             submitText.textContent = 'Tambah Pengeluaran';
             showPage('inputPage');
         });
-        
         reportNav.addEventListener('click', (e) => {
             e.preventDefault();
             showPage('reportPage');
             generateReport();
+            // Generate daily report for today by default
+            generateDailyReport(new Date(dailyReportDate.value));
         });
-        
         settingsNav.addEventListener('click', (e) => {
             e.preventDefault();
             showPage('settingsPage');
         });
-        
         // Duplicate navigation for other nav items
         homeNav2.addEventListener('click', (e) => {
             e.preventDefault();
             showPage('homePage');
         });
-        
         inputNav2.addEventListener('click', (e) => {
             e.preventDefault();
             expenseForm.reset();
@@ -1560,23 +1529,20 @@
             submitText.textContent = 'Tambah Pengeluaran';
             showPage('inputPage');
         });
-        
         reportNav2.addEventListener('click', (e) => {
             e.preventDefault();
             showPage('reportPage');
             generateReport();
+            generateDailyReport(new Date(dailyReportDate.value));
         });
-        
         settingsNav2.addEventListener('click', (e) => {
             e.preventDefault();
             showPage('settingsPage');
         });
-        
         homeNav3.addEventListener('click', (e) => {
             e.preventDefault();
             showPage('homePage');
         });
-        
         inputNav3.addEventListener('click', (e) => {
             e.preventDefault();
             expenseForm.reset();
@@ -1585,23 +1551,20 @@
             submitText.textContent = 'Tambah Pengeluaran';
             showPage('inputPage');
         });
-        
         reportNav3.addEventListener('click', (e) => {
             e.preventDefault();
             showPage('reportPage');
             generateReport();
+            generateDailyReport(new Date(dailyReportDate.value));
         });
-        
         settingsNav3.addEventListener('click', (e) => {
             e.preventDefault();
             showPage('settingsPage');
         });
-        
         homeNav4.addEventListener('click', (e) => {
             e.preventDefault();
             showPage('homePage');
         });
-        
         inputNav4.addEventListener('click', (e) => {
             e.preventDefault();
             expenseForm.reset();
@@ -1610,31 +1573,27 @@
             submitText.textContent = 'Tambah Pengeluaran';
             showPage('inputPage');
         });
-        
         reportNav4.addEventListener('click', (e) => {
             e.preventDefault();
             showPage('reportPage');
             generateReport();
+            generateDailyReport(new Date(dailyReportDate.value));
         });
-        
         settingsNav4.addEventListener('click', (e) => {
             e.preventDefault();
             showPage('settingsPage');
         });
-        
         // Month navigation for report
         prevMonth.addEventListener('click', () => {
             reportDate.setMonth(reportDate.getMonth() - 1);
             currentMonthDisplay.textContent = formatMonth(reportDate);
             generateReport();
         });
-        
         nextMonth.addEventListener('click', () => {
             reportDate.setMonth(reportDate.getMonth() + 1);
             currentMonthDisplay.textContent = formatMonth(reportDate);
             generateReport();
         });
-        
         // Logout event listeners
         homeLogoutBtn.addEventListener('click', performLogout);
         inputLogoutBtn.addEventListener('click', performLogout);
@@ -1642,11 +1601,43 @@
         settingsLogoutBtn.addEventListener('click', performLogout);
         logoutBtn.addEventListener('click', performLogout);
         
+        // Event Listener untuk tombol Ubah Budget
+        changeBudgetBtn.addEventListener('click', () => {
+            const newLimitStr = prompt("Masukkan budget bulanan baru (Rp):", budgetLimit.toString());
+            if (newLimitStr !== null) { // Jika pengguna tidak menekan Cancel
+                const newLimit = parseFloat(newLimitStr.replace(/\./g, '').replace(/,/g, '')); // Hapus titik/koma jika ada dan konversi
+                if (!isNaN(newLimit) && newLimit > 0) {
+                    saveBudgetLimit(newLimit);
+                    alert(`Budget bulanan berhasil diubah menjadi Rp ${formatCurrency(newLimit)}`);
+                } else {
+                    alert("Masukkan angka yang valid dan lebih besar dari 0.");
+                }
+            }
+        });
+        
+        // Event Listener untuk tombol Ganti Password (Placeholder)
+        changePasswordBtn.addEventListener('click', () => {
+            alert("Fitur Ganti Password memerlukan implementasi tambahan dengan Firebase Authentication. Fitur ini belum diimplementasikan sepenuhnya dalam kode ini.");
+            // Di sini Anda akan meminta password lama, password baru, konfirmasi password baru,
+            // dan menggunakan fungsi Firebase seperti reauthenticateWithCredential dan updatePassword
+        });
+        
+        // Daily report event listeners - langsung tampilkan saat tanggal berubah
+        dailyReportDate.addEventListener('change', () => {
+            const selectedDate = new Date(dailyReportDate.value);
+            if (!isNaN(selectedDate.getTime())) {
+                generateDailyReport(selectedDate);
+            } else {
+                showStatus(inputStatusMessage, 'Tanggal tidak valid!', false);
+            }
+        });
+        
         // Auth state listener
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 currentUser = user;
                 updateUserProfile(user);
+                loadBudgetLimit(); // Tambahkan ini untuk memuat budget saat login
                 showPage('homePage');
                 renderExpenses();
                 currentMonthDisplay.textContent = formatMonth(reportDate);
@@ -1659,7 +1650,6 @@
         // Initialize
         currentMonthDisplay.textContent = formatMonth(reportDate);
     </script>
-    
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
